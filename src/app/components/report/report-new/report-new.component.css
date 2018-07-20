@@ -1,0 +1,23 @@
+.example-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+.example-container>* {
+  width: 100%;
+}
+mat-grid-tile {
+  background: lightblue;
+}
+.example-form {
+  min-width: 150px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+.mat-grid-tile{
+  border: 1px darkred;
+  background-color: aliceblue
+}

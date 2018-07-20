@@ -1,0 +1,32 @@
+<div class="box box-solid box-info">
+  <div class="box-header">
+    <h3 class="box-title">Primary Solid Box</h3>
+    <p>{{selectedCategory | json}}</p>
+    <p>Form value: {{ categoryForm.value | json }}</p>
+  </div>
+  <div class="box-body">
+    <div class="example-container">
+      <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()" class="example-form"  novalidate>
+        <mat-form-field class="example-full-width" >
+          <input matInput placeholder="Nhập tên hạng mục báo cáo"  formControlName="ten_hang_muc" required>
+          <mat-error *ngIf="categoryForm.get('ten_hang_muc').invalid">Không để trống tên hạng mục</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" >
+          <textarea matInput placeholder="Ghi chú về hạng mục" formControlName="ghi_chu"  ></textarea>
+        </mat-form-field>
+
+        <ng-select [items]="DanhSachHangMucCha" formControlName="hang_muc_cha" placeholder="Nếu tạo nhóm hạng mục thì không chọn ở đây" bindLabel="ten_hang_muc"
+          >
+        </ng-select>
+      </form>
+    </div>
+  </div>
+  <div class="box-footer">
+    <button mat-button [disabled]="categoryForm.invalid" (click)="onSubmit()" mat-flat-button color="success">Save</button>
+    <button mat-button mat-flat-button (click)="categoryForm.reset()" color="primary">Reset</button>
+    <button mat-button mat-flat-button (click)="handleBack()" color="warm">Back</button>
+
+  </div>
+</div>
+<mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>

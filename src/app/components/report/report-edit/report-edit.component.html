@@ -1,0 +1,70 @@
+<div class="box box-success">
+  <div class="box-header">
+    <h3 class="box-title">Thông tin báo cáo</h3>
+    <p>Form value: {{ reportForm.value | json }}</p>
+
+    <p>Danh sach selected: {{DanhSachSelected|json}}</p>
+  </div>
+  <div class="box-body">
+    <div class="example-container">
+      <form [formGroup]="reportForm" (ngSubmit)="onSubmit()" class="example-form" novalidate >
+        <mat-form-field class="example-full-width">
+          <input matInput formControlName="tieu_de_bao_cao" placeholder="Nhập tiêu đề báo cáo" required>
+          <mat-error *ngIf="reportForm.get('tieu_de_bao_cao').invalid">Không để trống tiêu đề báo cáo</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput formControlName="ten_nguoi_bao_cao" placeholder="Nhập tên người báo cáo" required>
+          <mat-error *ngIf="reportForm.get('ten_nguoi_bao_cao').invalid">Không để trống tên người báo cáo</mat-error>
+
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput formControlName="ghi_chu" placeholder="Nhập ghi chú">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" formControlName="ngay_bao_cao"  placeholder="Chọn ngày báo cáo">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <ng-select 
+          [items]="DuLieuSelect" 
+          [multiple]="true" 
+          [selectableGroup]="true" 
+          [hideSelected]="true" 
+          (clear)="handleClear()"
+          (remove)="handleRemove($event)" 
+          bindLabel="ten_hang_muc"  
+          formControlName="select_hang_muc" 
+          (add)="handleAdd($event)" 
+          [groupBy]="groupByFn" 
+          [compareWith]="selectedAccounts5Fn"  
+          placeholder="Chọn hạng mục báo cáo"
+        >
+        </ng-select>
+        <mat-list *ngFor="let lct of DanhSachSelected" >
+          <h2 mat-subheader>{{lct.ten_hang_muc}}</h2>
+          <mat-divider></mat-divider>
+          <mat-grid-list cols="3" rowHeight="80px">
+            <mat-grid-tile *ngFor="let child of lct.danh_sach_hang_muc">
+              <mat-list-item>
+                <mat-icon (click)="handleDeleteHangMucControl(child,lct.id)" style="cursor: pointer;" mat-list-icon>clear</mat-icon>
+                <h4 mat-line>{{child.ten_hang_muc}}</h4>
+                <mat-form-field>
+                  <input matInput [(ngModel)]="child.ket_qua" [ngModelOptions]="{standalone: true}" placeholder="Nhập kết quả">
+                </mat-form-field>
+              </mat-list-item>
+            </mat-grid-tile>
+          </mat-grid-list>
+        </mat-list>
+      </form>
+    </div>
+  </div>
+  <div class="box-footer">
+    <button [disabled]="reportForm.invalid" (click)="onSubmit()" mat-button mat-flat-button color="success">Save</button>
+    <button (click)="reportForm.reset()" mat-button mat-flat-button color="primary">Reset</button>
+    <button (click)="handleBack()" mat-button mat-flat-button color="warm">Back</button>
+
+  </div>
+</div>
+<mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>

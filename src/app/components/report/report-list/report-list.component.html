@@ -1,0 +1,78 @@
+<div class="box">
+  <div class="box-header with-border">
+    <h3 class="box-title"></h3>
+    <div class="box-tools pull-right">
+      <!-- Buttons, labels, and many other things can be placed here! -->
+      <!-- Here is a label for example -->
+
+      <a class="btn btn-sm btn-danger" [routerLink]="['/dashboard/report-new']">
+        Tạo mới
+      </a>
+    </div>
+    <!-- /.box-tools -->
+  </div>
+  <!-- /.box-header -->
+  <div class="box-body">
+    <mat-grid-list cols="3" rowHeight="2:1">
+      <mat-grid-tile *ngFor="let report of danh_sach_bao_cao" >
+        <div class="box box-solid box-primary">
+          <div class="box-header with-border">
+            <h3 class="box-title">{{report.tieu_de_bao_cao}}</h3>
+          </div>
+          <div class="box-body">
+            <span>Ghi chú: {{report.ghi_chu}}</span><br>
+            <span>Thời gian: {{report.ngay_giao_ban}}</span>
+
+          </div>
+          <div class="box-footer">
+            <button (click)="onPreview(report)" mat-button mat-flat-button color="warm">Preview</button>
+            <button [routerLink]="['/dashboard/report-edit', report.id]" mat-button mat-flat-button color="primary">Edit</button>
+            <button  mat-button mat-flat-button [color]="'success'">Print</button>
+          </div>
+        </div>
+      </mat-grid-tile>
+      
+    </mat-grid-list>
+  </div>
+  <!-- /.box-body -->
+  <div class="box-footer">
+    The footer of the box
+  </div>
+  <!-- box-footer -->
+</div>
+<!-- /.box -->
+<!-- Start fullscreen -->
+<div id="myNav" class="overlay">
+
+  <!-- Button to close the overlay navigation -->
+  <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
+
+  <!-- Overlay content -->
+  <!-- <div class="reveal bg">
+    <div class="slides">
+      <section>
+        <h1>Bệnh viện đa khoa sơn tây</h1>
+        <h3>{{presentSelected.report.tieu_de_bao_cao||''}}</h3>
+        <h3>Khoa Nội Tổng Hợp</h3>
+        <p>
+          <small>Trình bày {{presentSelected.report.ten_nguoi_bao_cao||''}}</small>
+        </p>
+      </section>
+      <section class="hangmuc" *ngFor="let categoryParent of presentSelected.categoryParent">
+        <section>
+          <h1>{{categoryParent.ten_hang_muc}}</h1>
+          <ul class="category">
+            <li *ngFor="let categoryChild of categoryParent.danh_sach_hang_muc_con">
+              <h3 class="fragment">{{categoryChild.ten_hang_muc}}: {{categoryChild.ket_qua}}</h3>
+            </li>
+          </ul>
+
+        </section>
+      </section>
+      <section class="hangmuc">
+          <h2>Cảm ơn tất cả mọi người đã lắng nghe!!!!</h2>
+      </section>
+    </div>
+  </div> -->
+  <iframe id="test" #iframe style=" overflow-y: hidden;border: 0; width: 100%; height: 100%"  src="http://localhost:8000/present/type1/report/1"></iframe>
+</div>

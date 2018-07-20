@@ -1,0 +1,71 @@
+<!-- <mat-grid-list cols="2" rowHeight="1:1">
+  <mat-grid-tile>
+    <div class="container">
+      <textarea name="" id="markdownText" [value]="markdown" (keyup)="onKeyUp()" cols="80" rows="10"></textarea>
+    </div>
+    <button mat-button (click)="onPreview()" class="btn-success" >Preview</button>
+  </mat-grid-tile>
+  <mat-grid-tile>
+      <div class="wrap">
+          <iframe #iframe id="slides-frame"  [src]="url" frameborder="0" allowfullscreen></iframe>
+      </div>
+  </mat-grid-tile>
+</mat-grid-list> -->
+
+<div class="box">
+  <div class="box-body">
+    <div class="row">
+      <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+        <div >
+          <!-- <textarea name="" id="markdownText" [value]="markdown" (keyup)="onKeyUp()" cols="80" rows="10"></textarea> -->
+          <md-editor name="Content"  [(ngModel)]="markdown" [height]="'300px'" [mode]="mode" [options]="options"
+    required maxlength="500"></md-editor>
+        </div>
+      </div>
+      
+      <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+        <button type="button" (click)="onPreview()" class="btn btn-primary">Preview</button>
+      </div>
+      
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="wrap">
+          <iframe id="slides-frame" class="frame" [src]="url"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="box-footer">
+    
+    <button type="button" (click)="onSave()" class="btn btn-large btn-block btn-success">Save</button>
+    
+  </div>
+</div>
+<mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+<!-- Kieu server -->
+
+<!-- <mat-grid-list cols="2" rowHeight="1:1">
+  <mat-grid-tile>
+    <div class="container">
+<md-editor name="Content" [preRender]="preRenderFunc" [(ngModel)]="content" [height]="'200px'" [mode]="mode" [options]="options"
+  required maxlength="500"></md-editor>
+<p>{{markdown}}</p>
+    </div>
+    <button mat-button (click)="onPreview()">Preview</button>
+    <textarea name="" id="" cols="30" rows="10">{{content}}</textarea>
+  </mat-grid-tile>
+  <mat-grid-tile>
+        <div class="reveal">
+                <div class="slides">
+                        <section data-markdown
+                          data-separator="^---"
+                          data-separator-vertical="^--"
+                          data-separator-notes="^Note:"
+                          data-charset="iso-8859-15">
+                        <textarea data-template>
+                                {{content}}
+                        </textarea>
+               </section>
+                </div>
+            </div>
+  </mat-grid-tile>
+</mat-grid-list> -->
