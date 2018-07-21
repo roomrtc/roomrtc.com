@@ -12,6 +12,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { MaterialModule } from '../../shared/material.module';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SearchPipe } from '../../pipe/search/search.pipe';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -22,6 +24,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NgxPaginationModule,
     RouterModule.forChild(ReportRoutes)
   ],
-  declarations: [ReportComponent, ReportListComponent, ReportNewComponent, ReportEditComponent]
+  declarations: [ReportComponent, ReportListComponent, ReportNewComponent, ReportEditComponent,SearchPipe]
 })
 export class ReportModule { }

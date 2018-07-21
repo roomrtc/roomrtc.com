@@ -9,6 +9,10 @@ declare var $:any
   styleUrls: ['./report-list.component.css']
 })
 export class ReportListComponent implements OnInit {
+  //Config search pipe
+  keySearch:string=''
+  keySearchDraft:string=''
+
   //test pagination
   pdone: number = 1;
   pdraf:number=1

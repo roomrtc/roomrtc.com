@@ -15,13 +15,13 @@
 <div class="box box-success">
   <div class="box-header with-border">
     <h3 class="box-title">
-      Danh sach báo cáo đã trình chiếu
+      Danh sach báo cáo đã trình chiếu{{keySearch}}
     </h3>
     <div class="box-tools pull-right">
       <!-- Buttons, labels, and many other things can be placed here! -->
       <!-- Here is a label for example -->
       <div class="has-feedback" style="display: inline-block; margin-right: 5px;">
-        <input type="text" class="form-control input-sm" placeholder="Search...">
+        <input type="text" class="form-control input-sm" [(ngModel)]="keySearch" placeholder="Search...">
         <span class="glyphicon glyphicon-search form-control-feedback"></span>
 
       </div>
@@ -34,7 +34,7 @@
   <!-- /.box-header -->
   <div class="box-body">
     <mat-grid-list cols="3" rowHeight="2:1">
-      <mat-grid-tile *ngFor="let report of reportDone | paginate: {id: 'report_done', itemsPerPage: 6, currentPage: pdone ,totalItems: reportDone.length} ">
+      <mat-grid-tile *ngFor="let report of reportDone | paginate: {id: 'report_done', itemsPerPage: 6, currentPage: pdone ,totalItems: reportDone.length} | FilterSearch: keySearch">
         <div class="box box-solid box-primary">
           <div class="box-header with-border">
             <h3 class="box-title">{{report.tieu_de_bao_cao}}</h3>
@@ -70,7 +70,7 @@
       <!-- Buttons, labels, and many other things can be placed here! -->
       <!-- Here is a label for example -->
       <div class="has-feedback" style="display: inline-block; margin-right: 5px;">
-        <input type="text" class="form-control input-sm" placeholder="Search...">
+        <input type="text" class="form-control input-sm" [(ngModel)]="keySearchDraft" placeholder="Search...">
         <span class="glyphicon glyphicon-search form-control-feedback"></span>
 
       </div>
@@ -83,7 +83,7 @@
   <!-- /.box-header -->
   <div class="box-body">
     <mat-grid-list cols="3" rowHeight="2:1">
-      <mat-grid-tile *ngFor="let report of reportDraft | paginate: {id: 'report_draf', itemsPerPage: 6, currentPage: pdraf } ">
+      <mat-grid-tile *ngFor="let report of reportDraft | paginate: {id: 'report_draf', itemsPerPage: 6, currentPage: pdraf }|FilterSearch: keySearchDraft ">
         <div class="box box-solid box-danger">
           <div class="box-header with-border">
             <h3 class="box-title">{{report.tieu_de_bao_cao}}</h3>
