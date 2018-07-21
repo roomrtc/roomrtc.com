@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+
+
 import { ReportService } from '../../../services/report.service';
 import { ListCategory } from '../../../models/list_category.model';
 import { CategoryService } from '../../../services/category.service';
 import * as _ from "lodash";
 import { Category } from '../../../models/catergory.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Report } from '../../../models/report.model';
 
 @Component({
@@ -44,7 +46,8 @@ export class ReportEditComponent implements OnInit {
     private fb:FormBuilder,
     private reportServices:ReportService,
     private categoryServices:CategoryService,
-    private route:ActivatedRoute
+    private route:ActivatedRoute,
+    private router:Router
   ) {
     
     this.createForm()
@@ -59,10 +62,14 @@ export class ReportEditComponent implements OnInit {
       currentReport.id=params.id
       this.reportForm.addControl('id', new FormControl(params.id));
       this.reportServices.getItem(currentReport.id).subscribe((data)=>{
+        if(_.toInteger(data.status)){
+          return this.router.navigate(['dashboard/report-list']);
+        }
         this.reportForm.controls['tieu_de_bao_cao'].setValue(data.tieu_de_bao_cao)
         this.reportForm.controls['ten_nguoi_bao_cao'].setValue(data.ten_nguoi_bao_cao)
         this.reportForm.controls['ghi_chu'].setValue(data.ghi_chu)
         this.reportForm.controls['ngay_bao_cao'].setValue(data.ngay_giao_ban)
+        this.reportForm.controls['is_template'].setValue(data.is_template)
       })
       //Lay thong tin hang muc cua bao cao
       this.categoryServices.getListCategoryByIdReport(params.id).subscribe((data:any)=>{
@@ -235,7 +242,8 @@ export class ReportEditComponent implements OnInit {
       ten_nguoi_bao_cao:['',Validators.required],
       ghi_chu:[''],
       select_hang_muc:[],
-      ngay_bao_cao:[]
+      ngay_bao_cao:[],
+      is_template:[]
     })
   }
   onSubmit(){
@@ -247,9 +255,11 @@ export class ReportEditComponent implements OnInit {
     this.reportServices.updateReport(prepearModel).subscribe((response:any)=>{
       setTimeout(() => {
         this.isLoading=false
-        this.DanhSachSelected=[]
+        // this.DanhSachSelected=[]
+        this.router.navigate(['dashboard/report-list']);
       }, 2000);
     })
+   
   }
 
 }

@@ -24,7 +24,7 @@ export class ReportService {
     return this.httpClient.post<any>(`${this.API_URL}/report/new`,newReport)
   }
 
-  
+  //Cap nhat bao cao
   updateReport(report:any){
     
     return this.httpClient.put<any>(`${this.API_URL}/report/update/${report.id}`,report)
@@ -50,5 +50,10 @@ export class ReportService {
   getDanhSachHangMucPresent(idReport){
     return this.httpClient.get<any>(`${this.API_URL}/report/get-list-hang-muc-present/${idReport}`)
   }
-
+  //Lay danh sach bao cao da trinh chieu
+  
+  getReport(idKhoa: number, check: number){
+    return this.httpClient.get<any>(`${this.API_URL}/report/get-all/${idKhoa}/${check}`)
+  }
+  
 }

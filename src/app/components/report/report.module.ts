@@ -10,7 +10,7 @@ import {ReportRoutes} from './report.routing'
 
 import { NgSelectModule } from '@ng-select/ng-select';
 import { MaterialModule } from '../../shared/material.module';
-
+import {NgxPaginationModule} from 'ngx-pagination';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   imports: [
@@ -19,6 +19,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxPaginationModule,
     RouterModule.forChild(ReportRoutes)
   ],
   declarations: [ReportComponent, ReportListComponent, ReportNewComponent, ReportEditComponent]

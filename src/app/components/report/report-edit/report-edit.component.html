@@ -42,7 +42,7 @@
           placeholder="Chọn hạng mục báo cáo"
         >
         </ng-select>
-        <mat-list *ngFor="let lct of DanhSachSelected" >
+        <!-- <mat-list *ngFor="let lct of DanhSachSelected" >
           <h2 mat-subheader>{{lct.ten_hang_muc}}</h2>
           <mat-divider></mat-divider>
           <mat-grid-list cols="3" rowHeight="80px">
@@ -56,7 +56,51 @@
               </mat-list-item>
             </mat-grid-tile>
           </mat-grid-list>
-        </mat-list>
+        </mat-list> -->
+        <br>
+        <div class="box box-info" *ngFor="let lct of DanhSachSelected">
+          <div class="box-header with-border">
+            <h3 class="box-title">{{lct.ten_hang_muc}}</h3>
+
+            <div class="box-tools pull-right">
+              <button type="button" class="btn btn-box-tool" data-widget="remove">
+                <i class="fa fa-times"></i>
+              </button>
+            </div>
+            <!-- /.box-tools -->
+          </div>
+          <!-- /.box-header -->
+          <div class="box-body">
+            <!-- /.col -->
+            <div class="col-md-3" *ngFor="let child of lct.danh_sach_hang_muc">
+              <div class="box box-success">
+                <div class="box-header with-border">
+                  <h3 class="box-title">{{child.ten_hang_muc}}</h3>
+
+                  <div class="box-tools pull-right">
+                    <button (click)="handleDeleteHangMucControl(child,lct.id)" type="button" class="btn btn-box-tool" data-widget="remove">
+                      <i class="fa fa-times"></i>
+                    </button>
+                  </div>
+                  <!-- /.box-tools -->
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                  <mat-form-field class="example-full-width">
+                    <input matInput [(ngModel)]="child.ket_qua" [ngModelOptions]="{standalone: true}" placeholder="Nhập kết quả">
+                  </mat-form-field>
+                </div>
+                <!-- /.box-body -->
+              </div>
+              <!-- /.box -->
+            </div>
+          </div>
+          <!-- /.box-body -->
+
+          <!-- /.box -->
+        </div>
+        <br>
+        <mat-checkbox formControlName="is_template">Tạo template</mat-checkbox>
       </form>
     </div>
   </div>

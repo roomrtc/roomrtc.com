@@ -11,6 +11,7 @@ import { Category } from '../../../models/catergory.model';
   styleUrls: ['./report-new.component.css']
 })
 export class ReportNewComponent implements OnInit {
+  test=[1,2,3,4,5,6,7,8,9]
   //Config form
   reportForm:FormGroup
   //Config select
