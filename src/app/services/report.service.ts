@@ -21,7 +21,7 @@ export class ReportService {
 
   // Request create category api
   saveItem(newReport){
-    return this.httpClient.post<any>(`${this.API_URL}/report/new`,newReport)
+    return this.httpClient.post<any>(`http://localhost:3000/api/report`,newReport)
   }
 
   //Cap nhat bao cao
