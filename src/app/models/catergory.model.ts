@@ -1,11 +1,12 @@
-export class Category{
-    public id:number
-    public ten_hang_muc:string
-    public ten_khong_dau:string
-    public code:string
-    public idHangMucParent:number
-    public ket_qua:string
-    constructor(){
-        this.ket_qua=""
-    }
+export class Category {
+  public id: String
+  public ten_hang_muc: String
+  public ten_khong_dau: String
+  public code: String
+  public idItem: String
+  public idItemParent: String
+  public ket_qua: String
+  constructor() {
+    this.ket_qua = ""
+  }
 }

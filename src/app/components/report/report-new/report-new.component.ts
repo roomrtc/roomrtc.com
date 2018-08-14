@@ -49,12 +49,16 @@ selectedValueType=[]
       this.DuLieuSelect=data
     })
   }
-  groupByFn =(item) => item.parent.ten_hang_muc
+  groupByFn (item) {
+    if (!item.parent) return 'ROOT';
+    return item.parent.ten_hang_muc;
+  }
+
   selectedAccounts5Fn = (item, selected) => {
     if (selected.id && item.id) {
         return item.id === selected.id;
     }
-    
+
     return false;
   };
   handleAdd(event){
@@ -64,7 +68,8 @@ selectedValueType=[]
       let newCategory=new Category()
       newCategory.id=event.id
       newCategory.ten_hang_muc=event.ten_hang_muc
-      newCategory.idHangMucParent=event.parent.id
+      newCategory.idItem=event.id
+      newCategory.idItemParent=event.parent.id
       let check= _.findIndex(this.DanhSachSelected, function(o) { return o.id ==event.parent.id; });
       if(check>=0){
         //Co hang listCategory roi
@@ -83,21 +88,22 @@ selectedValueType=[]
       let temp=this.DuLieuSelect.filter((element)=>{
         return element.parent.ten_hang_muc==event.ten_hang_muc
       }).map((result)=>{
-        let newCategory=new Category()
-        newCategory.id=result.id,
-        newCategory.ten_hang_muc=result.ten_hang_muc,
-        newCategory.idHangMucParent=result.parent.id
+        let newCategory=new Category();
+        newCategory.id=result.id;
+        newCategory.ten_hang_muc=result.ten_hang_muc;
+        newCategory.idItem=event.id;
+        newCategory.idItemParent=result.parent.id;
         return newCategory
       })
       //B2: Kiem tra listCategory da co chua
-      let check= _.findIndex(this.DanhSachSelected, function(o) { return o.id ==temp[0].idHangMucParent }); 
+      let check= _.findIndex(this.DanhSachSelected, function(o) { return o.id ==temp[0].idItemParent });
       if(check>=0){
         //Co hang listCategory roi
         this.DanhSachSelected[check].danh_sach_hang_muc=temp
       }else{
         //Chua co listCategory
         let newListCategory=new ListCategory()
-        newListCategory.id=temp[0].idHangMucParent
+        newListCategory.id=temp[0].idItemParent
         newListCategory.ten_hang_muc=event.ten_hang_muc
         newListCategory.danh_sach_hang_muc=temp
         this.DanhSachSelected.push(newListCategory)
@@ -118,7 +124,7 @@ selectedValueType=[]
     }else{
       console.log(event)
       let tmp=this.reportForm.controls['select_hang_muc'].value
-      
+
       _.remove(this.DanhSachSelected,(current)=>{
         return current.ten_hang_muc==value.ten_hang_muc
       })

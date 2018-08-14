@@ -49,7 +49,7 @@ export class ReportEditComponent implements OnInit {
     private route:ActivatedRoute,
     private router:Router
   ) {
-    
+
     this.createForm()
     this.categoryServices.getDataSelect().subscribe((data:any)=>{
       this.DuLieuSelect=data
@@ -68,7 +68,7 @@ export class ReportEditComponent implements OnInit {
         this.reportForm.controls['tieu_de_bao_cao'].setValue(data.tieu_de_bao_cao)
         this.reportForm.controls['ten_nguoi_bao_cao'].setValue(data.ten_nguoi_bao_cao)
         this.reportForm.controls['ghi_chu'].setValue(data.ghi_chu)
-        this.reportForm.controls['ngay_bao_cao'].setValue(data.ngay_giao_ban)
+        this.reportForm.controls['ngay_bao_cao'].setValue(data.ngay_bao_cao)
         this.reportForm.controls['is_template'].setValue(data.is_template)
       })
       //Lay thong tin hang muc cua bao cao
@@ -78,35 +78,35 @@ export class ReportEditComponent implements OnInit {
             id:item.id,
             ten_hang_muc:item.ten_hang_muc,
             parent:{
-              id:item.idHangMucParent,
+              id:item.idItemParent,
               ten_hang_muc:item.ten_hang_muc_cha
             }
           }
         })
         this.reportForm.controls['select_hang_muc'].setValue(dataSourceSelected)
         //Lay thong tin hang muc them vao hang muc cua report created
-        let danh_sach_nhom_hang_muc=_.toArray(_.groupBy(data, 'idHangMucParent'))
+        let danh_sach_nhom_hang_muc=_.toArray(_.groupBy(data, 'idItemParent'))
         danh_sach_nhom_hang_muc.forEach(element => {
           let newListCategory=new ListCategory()
-          newListCategory.id=element[0].idHangMucParent
+          newListCategory.id=element[0].idItemParent
           newListCategory.ten_hang_muc=element[0].ten_hang_muc_cha
           element.forEach(child => {
             let newCategory=new Category()
             newCategory.id=child.id
             newCategory.ten_hang_muc=child.ten_hang_muc
-            newCategory.idHangMucParent=child.idHangMucParent
+            newCategory.idItemParent=child.idItemParent
             newCategory.ket_qua=child.ket_qua
             newListCategory.danh_sach_hang_muc.push(newCategory)
           });
           this.DanhSachSelected.push(newListCategory)
         });
-        
-        
+
+
 
         //Hien thi hang muc
-        
+
       })
-      
+
     })
   }
 
@@ -116,7 +116,7 @@ export class ReportEditComponent implements OnInit {
     if (selected.id && item.id) {
         return item.id === selected.id;
     }
-    
+
     return false;
   };
   handleAdd(event){
@@ -126,7 +126,7 @@ export class ReportEditComponent implements OnInit {
       let newCategory=new Category()
       newCategory.id=event.id
       newCategory.ten_hang_muc=event.ten_hang_muc
-      newCategory.idHangMucParent=event.parent.id
+      newCategory.idItemParent=event.parent.id
       let check= _.findIndex(this.DanhSachSelected, function(o) { return o.id ==event.parent.id; });
       if(check>=0){
         //Co hang listCategory roi
@@ -148,18 +148,18 @@ export class ReportEditComponent implements OnInit {
         let newCategory=new Category()
         newCategory.id=result.id,
         newCategory.ten_hang_muc=result.ten_hang_muc,
-        newCategory.idHangMucParent=result.parent.id
+        newCategory.idItemParent=result.parent.id
         return newCategory
       })
       //B2: Kiem tra listCategory da co chua
-      let check= _.findIndex(this.DanhSachSelected, function(o) { return o.id ==temp[0].idHangMucParent }); 
+      let check= _.findIndex(this.DanhSachSelected, function(o) { return o.id ==temp[0].idItemParent });
       if(check>=0){
         //Co hang listCategory roi
         this.DanhSachSelected[check].danh_sach_hang_muc=temp
       }else{
         //Chua co listCategory
         let newListCategory=new ListCategory()
-        newListCategory.id=temp[0].idHangMucParent
+        newListCategory.id=temp[0].idItemParent
         newListCategory.ten_hang_muc=event.ten_hang_muc
         newListCategory.danh_sach_hang_muc=temp
         this.DanhSachSelected.push(newListCategory)
@@ -180,7 +180,7 @@ export class ReportEditComponent implements OnInit {
     }else{
       console.log(event)
       let tmp=this.reportForm.controls['select_hang_muc'].value
-      
+
       _.remove(this.DanhSachSelected,(current)=>{
         return current.ten_hang_muc==value.ten_hang_muc
       })
@@ -235,7 +235,7 @@ export class ReportEditComponent implements OnInit {
 
     }
   }
-  
+
   createForm(){
     this.reportForm=this.fb.group({
       tieu_de_bao_cao:['',Validators.required],
@@ -259,7 +259,7 @@ export class ReportEditComponent implements OnInit {
         this.router.navigate(['dashboard/report-list']);
       }, 2000);
     })
-   
+
   }
 
 }

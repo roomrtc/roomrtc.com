@@ -5,11 +5,11 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ReportService {
-  private API_URL="http://localhost:8000"
+  private API_URL="http://localhost:3000/api"
   constructor(private httpClient:HttpClient) {}
   //Lay danh dach report theo ma khoa
   getAll(idKhoa){
-    return this.httpClient.get<any>(`${this.API_URL}/report/get-all/${idKhoa}`)
+    return this.httpClient.get<any>(`${this.API_URL}/report?idKhoa=${idKhoa}`)
   }
   getReportById(id){
     return this.httpClient.get<any>(`${this.API_URL}/report/${id}`)
@@ -26,7 +26,7 @@ export class ReportService {
 
   //Cap nhat bao cao
   updateReport(report:any){
-    
+
     return this.httpClient.put<any>(`${this.API_URL}/report/update/${report.id}`,report)
   }
   //Cap nhat trang thai bao cao
@@ -51,9 +51,9 @@ export class ReportService {
     return this.httpClient.get<any>(`${this.API_URL}/report/get-list-hang-muc-present/${idReport}`)
   }
   //Lay danh sach bao cao da trinh chieu
-  
-  getReport(idKhoa: number, check: number){
-    return this.httpClient.get<any>(`${this.API_URL}/report/get-all/${idKhoa}/${check}`)
+
+  getReport(idKhoa: number, status: number){
+    return this.httpClient.get<any>(`${this.API_URL}/report?idKhoa=${idKhoa}&status=${status}`)
   }
-  
+
 }

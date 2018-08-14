@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class RevealService {
-  private API_URL="http://localhost:8000"
+  private API_URL="http://localhost:3000/api"
   private options = { headers: new HttpHeaders().set('Content-Type', 'text/plain') };
   constructor(private httpClient:HttpClient) { }
 

@@ -1,4 +1,4 @@
-<!-- <div class="box box-danger" > 
+<!-- <div class="box box-danger" >
   <div class="box-header with-border" >
     <p>dsdasdasdasd</p>
   </div>
@@ -15,7 +15,7 @@
 <div class="box box-success">
   <div class="box-header with-border">
     <h3 class="box-title">
-      Danh sach báo cáo đã trình chiếu{{keySearch}}
+      Danh sách báo cáo đã trình chiếu {{keySearch}}
     </h3>
     <div class="box-tools pull-right">
       <!-- Buttons, labels, and many other things can be placed here! -->
@@ -42,7 +42,7 @@
           <div class="box-body">
             <span>Ghi chú: {{report.ghi_chu}}</span>
             <br>
-            <span>Thời gian: {{report.ngay_giao_ban}}</span>
+            <span>Thời gian: {{report.ngay_bao_cao | date: 'dd/MM/yyyy'}}</span>
 
           </div>
           <div class="box-footer text-center ">
@@ -64,7 +64,7 @@
 <div class="box box-info ">
   <div class="box-header with-border">
     <h3 class="box-title">
-      Danh sach báo cáo đang phát triển
+      Danh sách báo cáo đang phát triển
     </h3>
     <div class="box-tools pull-right">
       <!-- Buttons, labels, and many other things can be placed here! -->
@@ -91,12 +91,12 @@
           <div class="box-body">
             <span>Ghi chú: {{report.ghi_chu}}</span>
             <br>
-            <span>Thời gian: {{report.ngay_giao_ban}}</span>
+            <span>Thời gian: {{report.ngay_bao_cao | date: 'dd/MM/yyyy'}}</span>
 
           </div>
           <div class="box-footer text-center">
             <button class="m-5 btn-danger" (click)="onPreview(report,'type1')" mat-button mat-flat-button>Preview</button>
-            <button class="m-5 btn-danger" (click)="onPreview(report,'type2')" mat-button mat-flat-button>View Report</button>
+            <!-- <button class="m-5 btn-danger" (click)="onPreview(report,'type2')" mat-button mat-flat-button>Preview2</button> -->
             <button class="m-5 btn-primary" [routerLink]="['/dashboard/report-edit', report.id]" mat-button mat-flat-button>Edit</button>
             <button class="m-5 btn-info" mat-button mat-flat-button>Delete</button>
           </div>

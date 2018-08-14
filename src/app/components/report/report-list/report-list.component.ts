@@ -31,7 +31,7 @@ export class ReportListComponent implements OnInit {
     { name: 'Nicole', email: 'nicole@email.com', age: 43, country: 'Colombia', child: { state: 'Inactive' } },
     { name: 'Michael', email: 'michael@email.com', age: 15, country: 'Colombia', child: { state: 'Inactive' } },
     { name: 'Nicolás', email: 'nicole@email.com', age: 43, country: 'Colombia', child: { state: 'Inactive' } }
-];  
+];
   //Du lieu danh sach bao cao
   danh_sach_bao_cao=[]
   //Danh sach bao cao da trinh chieu
@@ -56,7 +56,7 @@ export class ReportListComponent implements OnInit {
   }
   onPreview(report,type){
     console.log(type)
-    let newUrl=`http://localhost:8000/present/${type}/report/${report.id}`
+    let newUrl=`http://localhost:3000/present/${type}/report/${report.id}`
     document.getElementById('test').setAttribute( 'src', newUrl);
     // document.getElementById('test').src =`http://localhost:8000/present/type1/report/${report.id}`
     document.getElementById("myNav").style.width = "100%";
@@ -86,10 +86,10 @@ export class ReportListComponent implements OnInit {
         })
       }
     });
-    
+
   }
   onEdit(report){
-    
+
   }
 
 }

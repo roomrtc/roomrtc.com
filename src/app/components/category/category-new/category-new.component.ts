@@ -30,27 +30,33 @@ export class CategoryNewComponent implements OnInit {
         let newCategory=new Category()
         newCategory.id=ctg.id
         newCategory.ten_hang_muc=ctg.ten_hang_muc,
-        newCategory.idHangMucParent=null
+        newCategory.idItemParent=null
         return newCategory
       })
     })
   }
+
   getErrorMessage() {
-     
+
   }
+
   createForm(){
     this.categoryForm=this.fb.group({
+      code: [''],
       ten_hang_muc :['',Validators.required],
       ghi_chu:[''],
       hang_muc_cha:[]
     })
   }
+
   handleBack(){
     this.location.back()
   }
+
   onSubmit(){
     let newCategory=this.prepareSaveCategory();
   }
+
   prepareSaveCategory(){
     const formModel=this.categoryForm.value
     this.categoryForm.reset()
@@ -60,6 +66,6 @@ export class CategoryNewComponent implements OnInit {
         this.isLoading=false
       }, 2000);
     })
-    
+
   }
 }
