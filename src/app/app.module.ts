@@ -19,7 +19,7 @@ import { TitleComponent } from './layouts/admin/title/title.component';
     AdminComponent,
     BreadcrumbsComponent,
     TitleComponent,
-  
+
   ],
   imports: [
     BrowserModule,

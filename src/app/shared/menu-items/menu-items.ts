@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core'
 export interface MainMenuItems{
     state:string
-    name:string 
+    name:string
     type:string
     icon:string
 }
@@ -11,7 +11,7 @@ export interface Menu{
 }
 const MENU_ITEMS=[
     {
-        label:"Quản lí báo cáo",
+        label:"QUẢN LÝ BÁO CÁO",
         main:[
             {
                 state:'dashboard',
@@ -22,7 +22,7 @@ const MENU_ITEMS=[
         ]
     },
     {
-        label:"Quản lí hạng mục",
+        label:"QUẢN LÝ HẠNG MỤC",
         main:[
             {
                 state:'category',
@@ -33,7 +33,7 @@ const MENU_ITEMS=[
         ]
     },
     {
-        label:"Quản lí trình chiếu",
+        label:"QUẢN LÝ TRÌNH CHIẾU",
         main:[
             {
                 state:'present',
