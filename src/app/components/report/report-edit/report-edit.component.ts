@@ -124,9 +124,10 @@ export class ReportEditComponent implements OnInit {
     if(event.id){
       //Neu la lan dau tien thi tao ca nhom
       let newCategory=new Category()
-      newCategory.id=event.id
-      newCategory.ten_hang_muc=event.ten_hang_muc
-      newCategory.idItemParent=event.parent.id
+      newCategory.id=event.id;
+      newCategory.ten_hang_muc=event.ten_hang_muc;
+      newCategory.idItem = event.id;
+      newCategory.idItemParent=event.id;
       let check= _.findIndex(this.DanhSachSelected, function(o) { return o.id ==event.parent.id; });
       if(check>=0){
         //Co hang listCategory roi
@@ -145,10 +146,11 @@ export class ReportEditComponent implements OnInit {
       let temp=this.DuLieuSelect.filter((element)=>{
         return element.parent.ten_hang_muc==event.ten_hang_muc
       }).map((result)=>{
-        let newCategory=new Category()
-        newCategory.id=result.id,
-        newCategory.ten_hang_muc=result.ten_hang_muc,
-        newCategory.idItemParent=result.parent.id
+        let newCategory=new Category();
+        newCategory.id=result.id;
+        newCategory.ten_hang_muc=result.ten_hang_muc;
+        newCategory.idItem = result.id;
+        newCategory.idItemParent=result.parent.id;
         return newCategory
       })
       //B2: Kiem tra listCategory da co chua

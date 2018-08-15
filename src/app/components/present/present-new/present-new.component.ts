@@ -24,7 +24,7 @@ export class PresentNewComponent implements OnInit,AfterViewInit {
   @ViewChild('iframe') iframe:ElementRef
   constructor(private fb:FormBuilder,private revealServices:RevealService,private sanitizer:DomSanitizer) {
     this.createForm()
-    this.url = this.sanitizer.bypassSecurityTrustResourceUrl('http://localhost:8000/reveal/showReveal');
+    this.url = this.sanitizer.bypassSecurityTrustResourceUrl('http://localhost:3000/api/present/showReveal');
   }
   createForm(){
     this.presentForm=this.fb.group({
@@ -47,16 +47,16 @@ export class PresentNewComponent implements OnInit,AfterViewInit {
   //         { src: '../../../../assets/reveal/plugin/notes/notes.js', async: true },
   //         { src: '../../../../assets/reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
   //      ],
-  //     // Display controls in the bottom right corner 
+  //     // Display controls in the bottom right corner
   //     controls: false,
 
-  //     // Display a presentation progress bar 
+  //     // Display a presentation progress bar
   //     progress: true,
 
-  //     // If true; each slide will be pushed to the browser history 
+  //     // If true; each slide will be pushed to the browser history
   //     history: true,
 
-  //     // Apply a 3D roll to links on hover 
+  //     // Apply a 3D roll to links on hover
   //     rollingLinks: true,
   //     width: "100%",
   //     height: "100%",
@@ -72,7 +72,7 @@ export class PresentNewComponent implements OnInit,AfterViewInit {
     let seft=this
     $("#markdownText").keyup(function(data){
       // console.log($(this).val())
-      
+
     });
   }
   onPreview(){
@@ -80,7 +80,7 @@ export class PresentNewComponent implements OnInit,AfterViewInit {
     seft.revealServices.updateMarkdown(this.markdown).subscribe((data)=>{
       console.log(data)
       seft.iframe
-      seft.url = seft.sanitizer.bypassSecurityTrustResourceUrl('http://localhost:8000/reveal/showReveal');
+      seft.url = seft.sanitizer.bypassSecurityTrustResourceUrl('http://localhost:3000/api/present/showReveal');
     })
     console.log('preview')
     // this.content=`### Cao Van`

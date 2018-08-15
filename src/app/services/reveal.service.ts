@@ -11,10 +11,10 @@ export class RevealService {
 
   updateMarkdown(data){
     // console.log('update')
-    return this.httpClient.put<any>(`${this.API_URL}/reveal/update`,{data:data})
+    return this.httpClient.put<any>(`${this.API_URL}/present/update`,{data:data})
   }
   getMarkDownContent(){
-    return this.httpClient.get<any>(`${this.API_URL}/reveal/getMarkDownContent`)
+    return this.httpClient.get<any>(`${this.API_URL}/present/getMarkDownContent`)
   }
   save(data){
     return this.httpClient.post<any>(`${this.API_URL}/reveal/save`,data)

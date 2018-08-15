@@ -56,7 +56,7 @@ export class ReportListComponent implements OnInit {
   }
   onPreview(report,type){
     console.log(type)
-    let newUrl=`http://localhost:3000/present/${type}/report/${report.id}`
+    let newUrl=`http://localhost:3000/api/report/${report.id}/present/${type}`
     document.getElementById('test').setAttribute( 'src', newUrl);
     // document.getElementById('test').src =`http://localhost:8000/present/type1/report/${report.id}`
     document.getElementById("myNav").style.width = "100%";

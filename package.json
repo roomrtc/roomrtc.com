@@ -1,8 +1,9 @@
 {
   "name": "meeting",
-  "version": "0.0.0",
+  "version": "0.9.1",
   "scripts": {
     "ng": "ng",
+    "dev": "npm start",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",

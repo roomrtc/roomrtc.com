@@ -21,17 +21,17 @@ export class ReportService {
 
   // Request create category api
   saveItem(newReport){
-    return this.httpClient.post<any>(`http://localhost:3000/api/report`,newReport)
+    return this.httpClient.post<any>(`${this.API_URL}/report`,newReport)
   }
 
   //Cap nhat bao cao
   updateReport(report:any){
 
-    return this.httpClient.put<any>(`${this.API_URL}/report/update/${report.id}`,report)
+    return this.httpClient.put<any>(`${this.API_URL}/report/${report.id}`,report)
   }
   //Cap nhat trang thai bao cao
   updateStatus(idBaoCao){
-    return this.httpClient.put<any>(`${this.API_URL}/report/update-status`,{idBaoCao:idBaoCao})
+    return this.httpClient.put<any>(`${this.API_URL}/report/${idBaoCao}/status`,{idBaoCao:idBaoCao})
   }
 
   //Lay thong tin bao cao
