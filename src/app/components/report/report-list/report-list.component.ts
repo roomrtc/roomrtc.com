@@ -55,37 +55,33 @@ export class ReportListComponent implements OnInit {
     //Lay danh sach bao cao dang trien
   }
   onPreview(report,type){
-    console.log(type)
+    console.log('Presenting: ', type, report.id);
     let newUrl=`http://localhost:3000/api/report/${report.id}/present/${type}`
-    document.getElementById('test').setAttribute( 'src', newUrl);
-    // document.getElementById('test').src =`http://localhost:8000/present/type1/report/${report.id}`
+    document.getElementById('presenter').setAttribute( 'src', newUrl);
     document.getElementById("myNav").style.width = "100%";
 
   }
   closeNav(){
-    // $("#test").get(0).contentWindow.print();
-    // document.getElementById("test").contentWindow.print();
-    console.log('dsdadsadasdsdasd')
     swal({
       title: "Bạn có muốn hoàn thành báo cáo không?",
       text: "Chú ý, bạn sẽ không thể chỉnh sửa được báo cáo sau khi đã hoàn thành!",
       icon: "warning",
-      buttons: ["Tiếp tục phát triển", "Hoàn thành báo cáo"],
+      buttons: ["Không", "Hoàn thành báo cáo"],
       dangerMode: true,
     })
     .then((willDelete) => {
       if (willDelete) {
-        swal("Chúc mừng bạn đã hoàn thành báo cáo", {
+        return swal("Chúc mừng bạn đã hoàn thành báo cáo", {
           icon: "success"
-        }).then(()=>{
-          document.getElementById("myNav").style.width = "0%";
         })
       } else {
-        swal("Bạn chọn tiếp tục phát triển!").then(()=>{
-          document.getElementById("myNav").style.width = "0%";
-        })
+        return Promise.resolve();
       }
-    });
+    })
+    .then(() => {
+      // Ẩn khung trình chiếu
+      document.getElementById("myNav").style.width = "0%";
+    })
 
   }
   onEdit(report){
