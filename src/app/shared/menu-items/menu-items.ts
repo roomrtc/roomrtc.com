@@ -13,12 +13,24 @@ const MENU_ITEMS=[
     {
         label:"QUẢN LÝ BÁO CÁO",
         main:[
-            {
-                state:'dashboard',
-                name:'Danh sách báo cáo',
-                type:'link',
-                icon:'ti-home'
-            }
+          {
+              state:'dashboard',
+              name:'Danh sách báo cáo',
+              type:'link',
+              icon:'fa-home'
+          },
+          // {
+          //   state:'dashboard',
+          //   name:'Danh sách báo cáo',
+          //   type:'link',
+          //   icon:'fa-home'
+          // },
+          // {
+          //   state:'category',
+          //   name:"Tạo mới hạng mục",
+          //   type:"link",
+          //   icon:'fa-list'
+          // }
         ]
     },
     {
@@ -28,7 +40,7 @@ const MENU_ITEMS=[
                 state:'category',
                 name:"Tạo mới hạng mục",
                 type:"link",
-                icon:'ti-home'
+                icon:'fa-list'
             }
         ]
     },
@@ -39,7 +51,7 @@ const MENU_ITEMS=[
                 state:'present',
                 name:"Tạo mới trình chiếu",
                 type:"link",
-                icon:'ti-home'
+                icon:'fa-slideshare'
             }
         ]
     }

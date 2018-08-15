@@ -8,10 +8,13 @@ import { MenuItems } from '../../shared/menu-items/menu-items';
 })
 export class AdminComponent implements OnInit {
 
-  constructor(public menuItems:MenuItems ) { 
+  MENU_ITEMS = [];
+
+  constructor(public menuItems:MenuItems ) {
     console.log(menuItems.getAll())
   }
 
   ngOnInit() {
+    this.MENU_ITEMS = this.menuItems.getAll();
   }
 }
