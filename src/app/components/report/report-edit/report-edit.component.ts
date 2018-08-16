@@ -94,7 +94,7 @@ export class ReportEditComponent implements OnInit {
           element.forEach(child => {
             let newCategory = new Category();
             newCategory.id = child.id;
-            newCategory.idItem = child.id;
+            newCategory.idItem = child.idItem;
             newCategory.ten_hang_muc = child.itemDetail.ten_hang_muc;
             newCategory.idItemParent = child.idItemParent;
             newCategory.ket_qua = child.ket_qua;
