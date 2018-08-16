@@ -5,18 +5,18 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class RevealService {
-  private API_URL="http://localhost:3000/api"
-  private options = { headers: new HttpHeaders().set('Content-Type', 'text/plain') };
-  constructor(private httpClient:HttpClient) { }
+    private API_URL="http://localhost:3000/api"
+    private options = { headers: new HttpHeaders().set('Content-Type', 'text/plain') };
+    constructor(private httpClient:HttpClient) { }
 
-  updateMarkdown(data){
+    updateMarkdown(data){
     // console.log('update')
     return this.httpClient.put<any>(`${this.API_URL}/present/update`,{data:data})
-  }
-  getMarkDownContent(){
+    }
+    getMarkDownContent(){
     return this.httpClient.get<any>(`${this.API_URL}/present/getMarkDownContent`)
-  }
-  save(data){
+    }
+    save(data){
     return this.httpClient.post<any>(`${this.API_URL}/reveal/save`,data)
   }
 }

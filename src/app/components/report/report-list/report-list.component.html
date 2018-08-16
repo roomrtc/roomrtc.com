@@ -67,22 +67,32 @@
       Danh sách báo cáo đang phát triển
     </h3>
     <div class="box-tools pull-right">
-      <!-- Buttons, labels, and many other things can be placed here! -->
-      <!-- Here is a label for example -->
-      <div class="has-feedback" style="display: inline-block; margin-right: 5px;">
-        <input type="text" class="form-control input-sm" [(ngModel)]="keySearchDraft" placeholder="Search...">
-        <span class="glyphicon glyphicon-search form-control-feedback"></span>
+      <!-- select -->
+      <div class="form-inline">
+        <div class="form-group">
+          <select class="form-control">
+            <option>Đang soạn thảo</option>
+            <option>Đã báo cáo</option>
+          </select>
+          <select class="form-control">
+            <option>Tất cả các khoa</option>
+          </select>
+          <div class="has-feedback" style="display: inline-block; margin: 0 5px;">
+            <input type="text" class="form-control input-sm" [(ngModel)]="keySearchDraft" placeholder="Search...">
+            <span class="glyphicon glyphicon-search form-control-feedback"></span>
 
+          </div>
+          <a class="btn btn-sm btn-danger" [routerLink]="['/dashboard/report-new']">
+            Tạo mới
+          </a>
+        </div>
       </div>
-      <a class="btn btn-sm btn-danger" [routerLink]="['/dashboard/report-new']">
-        Tạo mới
-      </a>
     </div>
     <!-- /.box-tools -->
   </div>
   <!-- /.box-header -->
   <div class="box-body">
-    <mat-grid-list cols="3" rowHeight="2:1">
+    <mat-grid-list cols="3" rowHeight="4:3">
       <mat-grid-tile *ngFor="let report of reportDraft | paginate: {id: 'report_draf', itemsPerPage: 6, currentPage: pdraf }|FilterSearch: keySearchDraft ">
         <div class="box box-solid box-danger">
           <div class="box-header with-border">

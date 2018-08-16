@@ -66,7 +66,7 @@ export class ReportListComponent implements OnInit {
       title: "Bạn có muốn hoàn thành báo cáo không?",
       text: "Chú ý, bạn sẽ không thể chỉnh sửa được báo cáo sau khi đã hoàn thành!",
       icon: "warning",
-      buttons: ["Không", "Hoàn thành báo cáo"],
+      buttons: ["Tiếp tục chỉnh sửa", "Hoàn thành báo cáo"],
       dangerMode: true,
     })
     .then((willDelete) => {
