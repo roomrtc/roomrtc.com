@@ -1,9 +1,9 @@
 <div class="box box-success">
   <div class="box-header">
-    <h3 class="box-title">Thông tin báo cáo</h3>
-    <p>Form value: {{ reportForm.value | json }}</p>
+    <h3 class="box-title">Nhập nội dung báo cáo</h3>
+    <!-- <p>Form value: {{ reportForm.value | json }}</p>
 
-    <p>Danh sach selected: {{DanhSachSelected|json}}</p>
+    <p>Danh sach selected: {{DanhSachSelected|json}}</p> -->
   </div>
   <div class="box-body">
     <div class="example-container">
@@ -27,18 +27,18 @@
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
-        <ng-select 
-          [items]="DuLieuSelect" 
-          [multiple]="true" 
-          [selectableGroup]="true" 
-          [hideSelected]="true" 
+        <ng-select
+          [items]="DuLieuSelect"
+          [multiple]="true"
+          [selectableGroup]="true"
+          [hideSelected]="true"
           (clear)="handleClear()"
-          (remove)="handleRemove($event)" 
-          bindLabel="ten_hang_muc"  
-          formControlName="select_hang_muc" 
-          (add)="handleAdd($event)" 
-          [groupBy]="groupByFn" 
-          [compareWith]="selectedAccounts5Fn"  
+          (remove)="handleRemove($event)"
+          bindLabel="ten_hang_muc"
+          formControlName="select_hang_muc"
+          (add)="handleAdd($event)"
+          [groupBy]="groupByFn"
+          [compareWith]="selectedAccounts5Fn"
           placeholder="Chọn hạng mục báo cáo"
         >
         </ng-select>
