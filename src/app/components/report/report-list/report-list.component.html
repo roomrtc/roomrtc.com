@@ -1,0 +1,161 @@
+<!-- <div class="box box-danger" >
+  <div class="box-header with-border" >
+    <p>dsdasdasdasd</p>
+  </div>
+  <div class="info-box-content">
+      <ul>
+          <li *ngFor="let item of collection | paginate: { itemsPerPage: 6, currentPage: p }"> {{item.name}} </li>
+      </ul>
+  </div>
+  <div class="box-footer">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+</div> -->
+
+<div class="box box-success">
+  <div class="box-header with-border">
+    <h3 class="box-title">
+      Danh sách báo cáo đã trình chiếu {{keySearch}}
+    </h3>
+    <div class="box-tools pull-right">
+      <!-- Buttons, labels, and many other things can be placed here! -->
+      <!-- Here is a label for example -->
+      <div class="has-feedback" style="display: inline-block; margin-right: 5px;">
+        <input type="text" class="form-control input-sm" [(ngModel)]="keySearch" placeholder="Search...">
+        <span class="glyphicon glyphicon-search form-control-feedback"></span>
+
+      </div>
+      <a class="btn btn-sm btn-danger" [routerLink]="['/dashboard/report-new']">
+        Tạo mới
+      </a>
+    </div>
+    <!-- /.box-tools -->
+  </div>
+  <!-- /.box-header -->
+  <div class="box-body">
+    <mat-grid-list cols="3" rowHeight="2:1">
+      <mat-grid-tile *ngFor="let report of reportDone | paginate: {id: 'report_done', itemsPerPage: 6, currentPage: pdone ,totalItems: reportDone.length} | FilterSearch: keySearch">
+        <div class="box box-solid box-primary">
+          <div class="box-header with-border">
+            <h3 class="box-title">{{report.tieu_de_bao_cao}}</h3>
+          </div>
+          <div class="report box-body">
+            <span>Ghi chú: {{report.ghi_chu}}</span>
+            <br>
+            <span>Thời gian: {{report.ngay_bao_cao | date: 'dd/MM/yyyy'}}</span>
+
+          </div>
+          <div class="box-footer text-center ">
+            <button class="m-5 btn-danger" (click)="onPreview(report,'type1')" mat-button mat-flat-button>Preview</button>
+            <button class="m-5 btn-danger" (click)="onPreview(report,'type2')" mat-button mat-flat-button>View Report</button>
+            <button class="m-5 btn-info" mat-button mat-flat-button>Print</button>
+          </div>
+        </div>
+      </mat-grid-tile>
+
+    </mat-grid-list>
+  </div>
+  <!-- /.box-body -->
+  <div class="box-footer">
+    <pagination-controls id="report_done" (pageChange)="pdone = $event1"></pagination-controls>
+  </div>
+  <!-- box-footer -->
+</div>
+<div class="box box-info ">
+  <div class="box-header with-border">
+    <h3 class="box-title">
+      Danh sách báo cáo đang sửa soạn
+    </h3>
+    <div class="box-tools pull-right">
+      <!-- select -->
+      <div class="form-inline">
+        <div class="form-group">
+          <select class="form-control">
+            <option>Đang soạn thảo</option>
+            <option>Đã báo cáo</option>
+          </select>
+          <select class="form-control">
+            <option>Tất cả các khoa</option>
+          </select>
+          <div class="has-feedback" style="display: inline-block; margin: 0 5px;">
+            <input type="text" class="form-control input-sm" [(ngModel)]="keySearchDraft" placeholder="Search...">
+            <span class="glyphicon glyphicon-search form-control-feedback"></span>
+
+          </div>
+          <a class="btn btn-sm btn-danger" [routerLink]="['/dashboard/report-new']">
+            Tạo mới
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- /.box-tools -->
+  </div>
+  <!-- /.box-header -->
+  <div class="box-body">
+    <mat-grid-list cols="3" rowHeight="4:3">
+      <mat-grid-tile *ngFor="let report of reportDraft | paginate: {id: 'report_draf', itemsPerPage: 6, currentPage: pdraf }|FilterSearch: keySearchDraft ">
+        <div class="box box-solid box-danger">
+          <div class="box-header with-border">
+            <h3 class="box-title">{{report.tieu_de_bao_cao}}</h3>
+          </div>
+          <div class="box-body report">
+            <span>Ghi chú: {{report.ghi_chu}}</span>
+            <br>
+            <span>Thời gian: {{report.ngay_bao_cao | date: 'dd/MM/yyyy'}}</span>
+
+          </div>
+          <div class="box-footer text-center">
+            <button class="m-5 btn-danger" (click)="onPreview(report,'type1')" mat-button mat-flat-button>Preview</button>
+            <!-- <button class="m-5 btn-danger" (click)="onPreview(report,'type2')" mat-button mat-flat-button>Preview2</button> -->
+            <button class="m-5 btn-primary" [routerLink]="['/dashboard/report-edit', report.id]" mat-button mat-flat-button>Edit</button>
+            <button class="m-5 btn-info" mat-button mat-flat-button>Delete</button>
+          </div>
+        </div>
+      </mat-grid-tile>
+
+    </mat-grid-list>
+  </div>
+  <!-- /.box-body -->
+  <div class="box-footer">
+    <pagination-controls id="report_draf" (pageChange)="pdraf = $event"></pagination-controls>
+  </div>
+  <!-- box-footer -->
+</div>
+
+<!-- /.box -->
+<!-- Start fullscreen -->
+<div id="myNav" class="overlay">
+
+  <!-- Button to close the overlay navigation -->
+  <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
+
+  <!-- Overlay content -->
+  <!-- <div class="reveal bg">
+    <div class="slides">
+      <section>
+        <h1>Bệnh viện đa khoa sơn tây</h1>
+        <h3>{{presentSelected.report.tieu_de_bao_cao||''}}</h3>
+        <h3>Khoa Nội Tổng Hợp</h3>
+        <p>
+          <small>Trình bày {{presentSelected.report.ten_nguoi_bao_cao||''}}</small>
+        </p>
+      </section>
+      <section class="hangmuc" *ngFor="let categoryParent of presentSelected.categoryParent">
+        <section>
+          <h1>{{categoryParent.ten_hang_muc}}</h1>
+          <ul class="category">
+            <li *ngFor="let categoryChild of categoryParent.danh_sach_hang_muc_con">
+              <h3 class="fragment">{{categoryChild.ten_hang_muc}}: {{categoryChild.ket_qua}}</h3>
+            </li>
+          </ul>
+
+        </section>
+      </section>
+      <section class="hangmuc">
+          <h2>Cảm ơn tất cả mọi người đã lắng nghe!!!!</h2>
+      </section>
+    </div>
+  </div> -->
+  <!-- <iframe id="test" #iframe style=" overflow-y: hidden;border: 0; width: 100%; height: 100%" src="http://localhost:8000/present/type1/report/1"></iframe> -->
+  <iframe id="presenter" #iframe style=" overflow-y: hidden;border: 0; width: 100%; height: 100%" onload="this.contentWindow.focus()"></iframe>
+</div>
