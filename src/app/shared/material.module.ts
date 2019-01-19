@@ -21,8 +21,8 @@ import 'hammerjs';
   imports: [
     MatButtonModule,
     MatCheckboxModule,
-    MatFormFieldModule, 
-    MatOptionModule, 
+    MatFormFieldModule,
+    MatOptionModule,
     MatInputModule,
     MatListModule,
     MatIconModule,
@@ -33,7 +33,7 @@ import 'hammerjs';
     MatNativeDateModule
   ],
   exports: [
-    MatButtonModule, 
+    MatButtonModule,
     MatCheckboxModule,
     MatFormFieldModule,
     MatOptionModule,
