@@ -11,6 +11,7 @@ import { AppRoutes } from './app.routing';
 import { MenuItems } from './shared/menu-items/menu-items';
 import { BreadcrumbsComponent } from './layouts/admin/breadcrumbs/breadcrumbs.component';
 import { TitleComponent } from './layouts/admin/title/title.component';
+import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
 
 
 @NgModule({
@@ -19,7 +20,7 @@ import { TitleComponent } from './layouts/admin/title/title.component';
     AdminComponent,
     BreadcrumbsComponent,
     TitleComponent,
-
+    AuthLayoutComponent,
   ],
   imports: [
     BrowserModule,

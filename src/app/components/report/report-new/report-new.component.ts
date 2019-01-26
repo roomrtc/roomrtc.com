@@ -44,6 +44,8 @@ export class ReportNewComponent implements OnInit {
 
   ngOnInit() {}
 
+  handleBack() {}
+
   groupByFn(item) {
     if (!item.parent) {
       return 'ROOT';
