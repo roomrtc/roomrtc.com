@@ -9,6 +9,6 @@ export class Category {
   public ket_qua: String;
 
   constructor() {
-    this.ket_qua = ""
+    this.ket_qua = '';
   }
 }

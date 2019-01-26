@@ -1,6 +1,8 @@
 {
   "name": "meeting",
-  "version": "0.9.1",
+  "version": "0.10.0",
+  "description": "RoomRTC - Quản lý giao ban và truyền hình trực tiếp",
+  "homepage": "https://roomrtc.com",
   "scripts": {
     "ng": "ng",
     "dev": "npm start",
