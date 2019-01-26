@@ -8,6 +8,7 @@
     "dev": "npm start",
     "start": "ng serve",
     "build": "ng build",
+    "build:docs": "ng build --output-path docs --base-href /giaoban/",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

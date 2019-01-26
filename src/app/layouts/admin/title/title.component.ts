@@ -10,10 +10,10 @@ export class TitleComponent implements OnInit {
   public title = '';
   constructor(private router: Router, private route: ActivatedRoute) {
     this.router.events.pipe(
-      filter(event=>event instanceof NavigationEnd)
+      filter(event => event instanceof NavigationEnd)
     ).subscribe(event => {
       let currentRoute = this.route.root;
-     
+
       do {
         const childrenRoutes = currentRoute.children;
         currentRoute = null;
