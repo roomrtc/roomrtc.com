@@ -5,7 +5,7 @@ import { PresentNewComponent } from './present-new/present-new.component';
 import { PresentRoutes } from './present.routing';
 
 import { RouterModule } from '@angular/router';
-import {FroalaEditorModule,FroalaViewModule} from 'angular-froala-wysiwyg'
+import {FroalaEditorModule, FroalaViewModule} from 'angular-froala-wysiwyg';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../../shared/material.module';
 import { MarkdownModule } from 'ngx-markdown';

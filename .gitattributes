@@ -214,4 +214,5 @@ Procfile    text
 *.tt     binary
 
 # No text automatically
+/dist/* -text
 /docs/* -text
