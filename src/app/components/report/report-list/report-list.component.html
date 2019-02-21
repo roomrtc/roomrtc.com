@@ -33,7 +33,7 @@
   </div>
   <!-- /.box-header -->
   <div class="box-body">
-    <mat-grid-list cols="3" rowHeight="2:1">
+    <mat-grid-list cols="3" rowHeight="4:3">
       <mat-grid-tile *ngFor="let report of reportDone | paginate: {id: 'report_done', itemsPerPage: 6, currentPage: pdone ,totalItems: reportDone.length} | FilterSearch: keySearch">
         <div class="box box-solid box-primary">
           <div class="box-header with-border">

@@ -118,26 +118,29 @@ export class ReportListComponent implements OnInit {
       child: {state: 'Inactive'}
     }
   ];
+
   // Du lieu danh sach bao cao
-  danh_sach_bao_cao = [];
-  // Danh sach bao cao da trinh chieu
-  reportDone: any[] = [];
+  danh_sach_bao_cao: Array<Report>;
   // Danh sach bao cao dang phat trien
-  reportDraft: any[] = [];
+  reportDraft: Array<Report>;
+  // Danh sach bao cao da trinh chieu
+  reportDone: Array<Report>;
 
   constructor(private reportServices: ReportService) {
-
+    this.danh_sach_bao_cao = [];
+    this.reportDraft = [];
+    this.reportDone = [];
   }
 
   ngOnInit() {
     // Lay danh sach bao cao
     this.reportServices.getAll(1)
-        .subscribe((data: any) => { this.danh_sach_bao_cao = data; });
+        .subscribe((data: Array<Report>) => { this.danh_sach_bao_cao = data; });
     // Lay danh sach bao cao da trinh chieu
     this.reportServices.getReport(1, 1)
-        .subscribe((data: any) => { this.reportDone = data; });
+        .subscribe((data: Array<Report>) => { this.reportDone = data; });
     this.reportServices.getReport(1, 0)
-        .subscribe((data: any) => { this.reportDraft = data; });
+        .subscribe((data: Array<Report>) => { this.reportDraft = data; });
     // Lay danh sach bao cao dang trien
   }
 

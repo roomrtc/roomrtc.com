@@ -10,6 +10,9 @@ import {
 import {Observable, of, throwError} from 'rxjs';
 import {delay, mergeMap, materialize, dematerialize} from 'rxjs/operators';
 
+// import fake data
+import { ReportFakeData } from '../data/fake-backend.data';
+
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
   constructor() {}
@@ -20,6 +23,16 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
     // wrap in delayed observable to simulate server api call
     return of(null).pipe(mergeMap(() => {
+
+      /**
+       * Region quản lý báo cáo (fake)
+       */
+      if (request.method === 'GET' && /report\?idKhoa=\d+&status=\d+$/.test(request.url)) {
+        return of(new HttpResponse({
+          status: 200,
+          body: ReportFakeData
+        }));
+      }
 
       // authenticate
       if (request.url.endsWith('/users/authenticate') && request.method === 'POST') {
