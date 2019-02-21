@@ -1,6 +1,8 @@
 import {Routes} from '@angular/router';
 
 import {AdminComponent} from './layouts/admin/admin.component';
+import { LoginComponent } from './layouts/login/login.component';
+import { PageNotFoundComponent } from './layouts/page-not-found/page-not-found.component';
 
 export const AppRoutes: Routes = [
   {
@@ -22,5 +24,11 @@ export const AppRoutes: Routes = [
         loadChildren: './components/present/present.module#PresentModule'
       }
     ]
+  }, {
+    path: 'login',
+    component: LoginComponent
+  },  {
+    path: '**',
+    component: PageNotFoundComponent
   }
 ];

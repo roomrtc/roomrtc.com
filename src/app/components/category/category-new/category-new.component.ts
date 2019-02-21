@@ -11,61 +11,61 @@ import { Location } from '@angular/common';
 })
 export class CategoryNewComponent implements OnInit {
 
-  //Config validation form
-  categoryForm : FormGroup
-  //Config select category
-  selectedCategory:any
-  DanhSachHangMucCha:Category[]
-  //Config loading
-  isLoading=false
+  // Config validation form
+  categoryForm: FormGroup;
+  // Config select category
+  selectedCategory: any;
+  DanhSachHangMucCha: Category[];
+  // Config loading
+  isLoading = false;
 
-  constructor(private categoryServices:CategoryService,private fb:FormBuilder,private location:Location) {
-    this.createForm()
+  constructor(private categoryServices: CategoryService, private fb: FormBuilder, private location: Location) {
+    this.createForm();
   }
 
   ngOnInit() {
-    this.categoryServices.getItemsGroup().subscribe((item:any)=>{
-      console.log(item)
-      this.DanhSachHangMucCha=item.map((ctg)=>{
-        let newCategory=new Category()
-        newCategory.id=ctg.id
-        newCategory.ten_hang_muc=ctg.ten_hang_muc,
-        newCategory.idItemParent=null
-        return newCategory
-      })
-    })
+    this.categoryServices.getItemsGroup().subscribe((item: any) => {
+      console.log(item);
+      this.DanhSachHangMucCha = item.map((ctg) => {
+        const newCategory = new Category();
+        newCategory.id = ctg.id;
+        newCategory.ten_hang_muc = ctg.ten_hang_muc,
+        newCategory.idItemParent = null;
+        return newCategory;
+      });
+    });
   }
 
   getErrorMessage() {
 
   }
 
-  createForm(){
-    this.categoryForm=this.fb.group({
+  createForm() {
+    this.categoryForm = this.fb.group({
       code: [''],
-      ten_hang_muc :['',Validators.required],
-      ghi_chu:[''],
-      hang_muc_cha:[]
-    })
+      ten_hang_muc : ['', Validators.required],
+      ghi_chu: [''],
+      hang_muc_cha: []
+    });
   }
 
-  handleBack(){
-    this.location.back()
+  handleBack() {
+    this.location.back();
   }
 
-  onSubmit(){
-    let newCategory=this.prepareSaveCategory();
+  onSubmit() {
+    const newCategory = this.prepareSaveCategory();
   }
 
-  prepareSaveCategory(){
-    const formModel=this.categoryForm.value
-    this.categoryForm.reset()
-    this.isLoading=true
-    this.categoryServices.saveItem(formModel).subscribe((response)=>{
+  prepareSaveCategory() {
+    const formModel = this.categoryForm.value;
+    this.categoryForm.reset();
+    this.isLoading = true;
+    this.categoryServices.saveItem(formModel).subscribe((response) => {
       setTimeout(() => {
-        this.isLoading=false
+        this.isLoading = false;
       }, 2000);
-    })
+    });
 
   }
 }
