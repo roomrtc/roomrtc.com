@@ -11,10 +11,10 @@ import { first } from 'rxjs/operators';
 })
 export class LoginComponent implements OnInit {
 
-  private loginForm: FormGroup;
-  private loading = false;
-  private submitted = false;
-  private returnUrl: string;
+  loginForm: FormGroup;
+  loading = false;
+  submitted = false;
+  returnUrl: string;
   error: string;
 
   constructor(
