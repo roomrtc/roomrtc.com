@@ -1,3 +1,5 @@
+import { Category } from 'src/app/models/catergory.model';
+
 export class Report {
   public id: number;
   public code: string;
@@ -8,5 +10,6 @@ export class Report {
   public is_template: boolean;
   public ngay_bao_cao: Date;
   public status: number;
+  public items?: Category[];
   constructor() {}
 }

@@ -62,24 +62,29 @@ export class ReportEditComponent implements OnInit {
       const currentReport = new Report();
       currentReport.id = params.id;
       this.reportForm.addControl('id', new FormControl(params.id));
-      this.reportServices.getItem(currentReport.id).subscribe((data) => {
-        if (_.toInteger(data.status)) {
-          return this.router.navigate(['dashboard/report-list']);
-        }
+      this.reportServices.getItem(currentReport.id).subscribe((data: Report) => {
+        // if (_.toInteger(data.status)) {
+        //   // TODO: báo cáo đã DONE thì không thể edit --> Redirect ?
+        //   return this.router.navigate(['dashboard/report-list']);
+        // }
         this.reportForm.controls['tieu_de_bao_cao'].setValue(data.tieu_de_bao_cao);
         this.reportForm.controls['ten_nguoi_bao_cao'].setValue(data.ten_nguoi_bao_cao);
         this.reportForm.controls['ghi_chu'].setValue(data.ghi_chu);
         this.reportForm.controls['ngay_bao_cao'].setValue(data.ngay_bao_cao);
         this.reportForm.controls['is_template'].setValue(data.is_template);
 
+        if (!data.items) {
+          return;
+        }
+
         // Xử lý thông tin hạng mục báo cáo
         const dataSourceSelected = data.items.map((item) => {
           return {
             id: item.idItem,
-            ten_hang_muc: item.itemDetail.ten_hang_muc,
+            ten_hang_muc: item.ten_hang_muc,
             parent: {
               id: item.idItemParent,
-              ten_hang_muc: item.itemParent.ten_hang_muc
+              ten_hang_muc: item.ten_hang_muc
             }
           };
         });
@@ -90,12 +95,12 @@ export class ReportEditComponent implements OnInit {
         _.each(danh_sach_nhom_hang_muc, (element, i) => {
           const newListCategory = new ListCategory();
           newListCategory.id = element[0].idItemParent;
-          newListCategory.ten_hang_muc = element[0].itemParent.ten_hang_muc;
+          newListCategory.ten_hang_muc = element[0].parent.ten_hang_muc;
           element.forEach(child => {
             const newCategory = new Category();
             newCategory.id = child.id;
             newCategory.idItem = child.idItem;
-            newCategory.ten_hang_muc = child.itemDetail.ten_hang_muc;
+            newCategory.ten_hang_muc = child.ten_hang_muc;
             newCategory.idItemParent = child.idItemParent;
             newCategory.ket_qua = child.ket_qua;
             newListCategory.danh_sach_hang_muc.push(newCategory);

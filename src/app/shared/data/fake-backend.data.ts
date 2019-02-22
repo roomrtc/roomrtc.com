@@ -13,6 +13,25 @@ export const ReportFakeData: Report[] = [
     ngay_bao_cao: new Date,
     status: 1,
     ten_nguoi_bao_cao: 'Vu Bao Nhu',
-    tieu_de_khong_dau: 'Tieu de khong dau'
+    tieu_de_khong_dau: 'Tieu de khong dau',
+    items: [{
+        id: Date.toString(),
+        idItemParent: 2,
+        ten_hang_muc: 'Tổng số khám',
+        parent: {
+          id: 2,
+          ten_hang_muc: 'Thống kê bệnh nhân'
+        }
+      },
+      {
+        id: 20,
+        idItemParent: 2,
+        ten_hang_muc: 'Viện phí',
+        parent: {
+          id: 2,
+          ten_hang_muc: 'Thống kê bệnh nhân'
+        }
+      }
+    ]
   }
 ];

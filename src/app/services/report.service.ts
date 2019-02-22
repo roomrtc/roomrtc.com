@@ -15,7 +15,7 @@ export class ReportService {
     return this.httpClient.get<Array<Report>>(`${this.API_URL}/report?idKhoa=${idKhoa}`);
   }
   getReportById(id) {
-    return this.httpClient.get<any>(`${this.API_URL}/report/${id}`);
+    return this.httpClient.get<Report>(`${this.API_URL}/report/${id}`);
   }
   // Lay danh dach category theo ma khoa
   getKhoaHasCategory() {

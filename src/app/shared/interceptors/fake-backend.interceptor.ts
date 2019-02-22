@@ -32,6 +32,13 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           status: 200,
           body: ReportFakeData
         }));
+      } else if (request.method === 'GET' && /report\/(.+)/.test(request.url)) {
+        const idFind = request.url.match(/report\/(.+)/)[1];
+        const result = ReportFakeData.find(x => x.id.toString() === idFind);
+        return of(new HttpResponse({
+          status: 200,
+          body: result
+        }));
       }
 
       // authenticate
