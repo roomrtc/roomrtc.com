@@ -17,7 +17,8 @@ const MENU_ITEMS = [
         state: 'dashboard',
         name: 'Danh sách báo cáo',
         type: 'link',
-        icon: 'fa-home'
+        icon: 'fa-home',
+        routerLink: '/dashboard/report-list'
       },
       // {   state:'dashboard',   name:'Danh sách báo cáo',   type:'link',
       // icon:'fa-home' }, {   state:'category',   name:"Tạo mới hạng mục",
@@ -31,7 +32,8 @@ const MENU_ITEMS = [
         state: 'category',
         name: 'Tạo mới hạng mục',
         type: 'link',
-        icon: 'fa-list'
+        icon: 'fa-list',
+        routerLink: '/category/category-new'
       }
     ]
   },
@@ -42,7 +44,20 @@ const MENU_ITEMS = [
         state: 'present',
         name: 'Tạo mới trình chiếu',
         type: 'link',
-        icon: 'fa-slideshare'
+        icon: 'fa-slideshare',
+        routerLink: '/present'
+      }
+    ]
+  },
+  {
+    label: 'QUẢN LÝ NGƯỜI DÙNG',
+    main: [
+      {
+        state: 'user',
+        name: 'Danh sách tài khoản',
+        type: 'link',
+        icon: 'fa-users',
+        routerLink: '/user'
       }
     ]
   }

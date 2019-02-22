@@ -22,6 +22,9 @@ export const AppRoutes: Routes = [
       }, {
         path: 'present',
         loadChildren: './components/present/present.module#PresentModule'
+      }, {
+        path: 'user',
+        loadChildren: './components/user/user.module#UserModule'
       }
     ]
   }, {
