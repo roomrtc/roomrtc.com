@@ -1,4 +1,22 @@
 import { Report } from '../../models/report.model';
+import { User } from 'src/app/models/user.model';
+
+/**
+ * Fake user login
+ */
+export const UserFakeData: User[] = [{
+  id: 1,
+  username: 'vunb',
+  password: 'vunb',
+  firstName: 'Vu Bao Nhu',
+  fullName: 'vunb'
+}, {
+  id: 2,
+  username: 'test',
+  password: 'test',
+  firstName: 'test',
+  fullName: 'test (vunb)'
+}];
 
 /**
  * Fake data Report

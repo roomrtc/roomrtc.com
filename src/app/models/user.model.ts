@@ -1,7 +1,11 @@
 export class User {
-  id: number;
-  username: string;
-  password: string;
+  id: String | Number;
+  username: String;
+  password: String;
   firstName: string;
-  lastName: string;
+  lastName?: string;
+
+  public get fullName() {
+    return `${this.firstName}${this.lastName ? ' ' + this.lastName : '' }`;
+  }
 }

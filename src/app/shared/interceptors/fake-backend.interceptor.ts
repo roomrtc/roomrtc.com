@@ -11,7 +11,8 @@ import {Observable, of, throwError} from 'rxjs';
 import {delay, mergeMap, materialize, dematerialize} from 'rxjs/operators';
 
 // import fake data
-import { ReportFakeData } from '../data/fake-backend.data';
+import * as _ from 'lodash';
+import { ReportFakeData, UserFakeData } from '../data/fake-backend.data';
 
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
@@ -43,8 +44,10 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
       // authenticate
       if (request.url.endsWith('/users/authenticate') && request.method === 'POST') {
+        // join demo users
+        const vUsers = _(users).concat(UserFakeData).groupBy('id').map(_.spread(_.merge)).value();
         // find if any user matches login credentials
-        const filteredUsers = users.filter(user => {
+        const filteredUsers = vUsers.filter(user => {
           return user.username === request.body.username && user.password === request.body.password;
         });
 
